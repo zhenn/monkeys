@@ -1,6 +1,6 @@
 {
   "name": "monkeys",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "tools for local-dev",
   "main": "index.js",
   "bin" : {
@@ -10,11 +10,14 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
-    "tools"
+    "tools",
+    "monkey",
+    "monkeys",
+    "toolkit"
   ],
   "repository" : { 
     "type" : "git", 
-    "url" : "http://github.com/isaacs/npm.git"
+    "url" : "https://github.com/zhenn/monkeys.git"
   },
   "author": "zhenn",
   "contributors" : [],
