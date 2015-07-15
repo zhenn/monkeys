@@ -1,0 +1,38 @@
+{
+  "name": "monkeys",
+  "version": "1.0.0",
+  "description": "tools for local-dev",
+  "main": "index.js",
+  "bin" : {
+  		"monkeys" : "./bin/monkeys"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "tools"
+  ],
+  "repository" : { 
+    "type" : "git", 
+    "url" : "http://github.com/isaacs/npm.git"
+  },
+  "author": "zhenn",
+  "contributors" : [],
+  "man" : "",
+  "dependencies" : {
+    "commander": ">= 2.8.0",
+	   "koa" : "0.19.1",
+    "thunkify" : "2.1.2",
+	   "cp-file" : "2.1.0",
+     "copy-dir" : "0.0.7",
+     "rmdir" : "1.1.0",
+     "step" : "0.0.5",
+     "uglify-js" : "2.4.20",
+	 "co" : "4.5.4",
+    "colors" :"1.1.0",
+    "prompt" : "0.2.14",
+    "git-tools" : ">=0.1.4",
+	"imagemin" : ">=3.2.0"
+  },
+  "license": "ISC"
+}

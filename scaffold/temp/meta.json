@@ -1,0 +1,8 @@
+{
+	"name" : "<%= name %>",
+	"version" : "<%= version %>",
+	"deps" : {
+		"h5lib" : "../h5lib:1.0.0",
+		"module" : "../module:0.0.2"
+	}
+}
