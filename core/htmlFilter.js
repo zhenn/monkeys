@@ -1,7 +1,6 @@
 
-module.exports = {
-	replaceVersion : function (sourceConent , curVal , targetVal) {
-		var reg = new RegExp(curVal , 'gi');
-		return sourceConent.replace(reg , targetVal);
-	}
-};
+var base = require('./base');
+
+module.exports = extend({
+	
+} , base);

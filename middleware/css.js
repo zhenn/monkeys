@@ -16,8 +16,9 @@ module.exports = function (cssize) {
 			return;
 		}
 		if (this.file.type == 'css') {
-			// var projectPath = cwd + '/' + this.localPath.replace(cwd , '').split('/')[1];
+			
 			var content = cssFilter.importsWalker(this.localPath , cwd);
+			content = cssFilter.replaceVersion(content , '@@version' , 'src');
 			
 			this.set('Content-Type' , 'text/css');
 			this.body = cssFilter.changePxToRem(content , cssize);

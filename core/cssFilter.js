@@ -5,8 +5,10 @@
 
 var fs = require('fs');
 var path = require('path');
+var base = require('./base');
+var extend = require('extend');
 
-module.exports = {
+module.exports = extend({
 
 	/**
 	 * 转换px到rem
@@ -67,4 +69,7 @@ module.exports = {
 		return cssCodeArr.join('\n');
 	}
 
-};
+} , base);
+
+
+
