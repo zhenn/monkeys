@@ -230,7 +230,11 @@ module.exports = {
 				return;
 			}
 
-			content = cssFilter.changePxToRem(fs.readFileSync(v , 'utf-8') , cssize);
+			var temp = cwd.split('/');
+			temp.pop();
+			content = cssFilter.importsWalker(v , temp.join('/'));
+
+			content = cssFilter.changePxToRem(content , cssize);
 			fs.writeFileSync(v , content , 'utf-8');
 		});
 	},

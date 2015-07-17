@@ -7,6 +7,8 @@ var fs = require('fs');
 var thunkify = require('thunkify');
 var cssFilter = require('../core/cssFilter');
 
+var cwd = process.cwd();
+
 module.exports = function (cssize) {
 
 	return function *(next) {
@@ -14,7 +16,8 @@ module.exports = function (cssize) {
 			return;
 		}
 		if (this.file.type == 'css') {
-			var content = yield thunkify(fs.readFile)( this.localPath , 'utf-8');
+			// var projectPath = cwd + '/' + this.localPath.replace(cwd , '').split('/')[1];
+			var content = cssFilter.importsWalker(this.localPath , cwd);
 			
 			this.set('Content-Type' , 'text/css');
 			this.body = cssFilter.changePxToRem(content , cssize);
