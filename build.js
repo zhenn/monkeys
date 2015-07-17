@@ -223,6 +223,11 @@ module.exports = {
 		var ids = filetool.walker(cssDir);
 		var cssize = self.envObj.cssize;
 		var metaJSON = require(cwd + '/meta.json');
+		var targetHost = '';
+
+		if (self.envObj.product) {
+			targetHost = 'http://' + cdnHost.product;
+		}
 		
 		ids.forEach(function (v , index) {
 			var ext = path.extname(v);
@@ -235,7 +240,7 @@ module.exports = {
 			temp.pop();
 			content = cssFilter.importsWalker(v , temp.join('/'));
 			content = cssFilter.replaceVersion(content , '@@version' , metaJSON.version);
-			content = cssFilter.changeDomain(content , 'http://local.cdn.pengpengla.com' , 'http://p1.cdn.pengpengla.com');
+			content = cssFilter.changeDomain(content , 'http://' + cdnHost.local , targetHost);
 
 			content = cssFilter.changePxToRem(content , cssize);
 			fs.writeFileSync(v , content , 'utf-8');
