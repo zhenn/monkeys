@@ -36,8 +36,12 @@ module.exports = function *(next) {
 			content = contents.join('');
 
 		} else {
+			if (this.localPath.indexOf('build') > -1) {
+				content = fs.readFileSync(this.localPath , 'utf-8');
+			} else {
+				content = jsdeps.export(cwd , this.localPath);
+			}
 			
-			content = jsdeps.export(cwd , this.localPath);
 		}
 
 		this.body = content;

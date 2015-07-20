@@ -28,6 +28,9 @@ var ImageMin = require('imagemin');
 var time = require('./lib/time');
 var cssFilter = require('./core/cssFilter');
 var jsdeps = require('./core/jsdeps');
+var UglifyJS = require("uglify-js");
+var uglifycss = require('uglifycss');
+
 
 // 执行build的目录
 var cwd = process.cwd();
@@ -240,7 +243,7 @@ module.exports = {
 		if (self.envObj.product) {
 			targetHost = 'http://' + cdnHost.product;
 		}
-		
+		console.log('正在进行css文件静态编译:');
 		ids.forEach(function (v , index) {
 			var ext = path.extname(v);
 			var content = '';
@@ -255,7 +258,10 @@ module.exports = {
 			content = cssFilter.changeDomain(content , 'http://' + cdnHost.local , targetHost);
 
 			content = cssFilter.changePxToRem(content , cssize);
-			fs.writeFileSync(v , content , 'utf-8');
+			var uglified = uglifycss.processString(content);
+
+			fs.writeFileSync(v , uglified , 'utf-8');
+			console.log(('    ' + v.replace(/\/build\//g , '/src/') + ' ===> ' + v + ' 100%').gray);
 		});
 	},
 
@@ -274,7 +280,7 @@ module.exports = {
 		_arr.pop();
 		var projectParentDirName = _arr.join('/');
 		
-		console.log('正在进行js文件静态编译:')
+		console.log('正在进行js文件静态编译:');
 		ids.forEach(function (val ,i) {
 			var extname = path.extname(val),
 				basename = path.basename(val),
@@ -289,6 +295,9 @@ module.exports = {
 				return;
 			}
 			content = jsdeps.export(projectParentDirName , val);
+			content = UglifyJS.minify(content , {
+				fromString : true
+			}).code;
 			fs.writeFileSync(val , content , 'utf-8');
 			console.log(('    ' + val.replace(/\/build\//g , '/src/') + ' ===> ' + val + ' 100%').gray);
 		});

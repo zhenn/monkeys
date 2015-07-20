@@ -1,6 +1,6 @@
 {
   "name": "monkeys",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "tools for local-dev",
   "main": "index.js",
   "bin" : {
@@ -30,7 +30,8 @@
      "copy-dir" : "0.0.7",
      "rmdir" : "1.1.0",
      "step" : "0.0.5",
-     "uglify-js" : "2.4.20",
+     "uglify-js" : "2.4.23",
+     "uglifycss" : "0.0.15",
 	 "co" : "4.5.4",
     "colors" :"1.1.0",
     "prompt" : "0.2.14",
