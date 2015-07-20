@@ -4,8 +4,13 @@
  */
 
 var fs = require('fs'); 
+var path = require('path');
 var thunkify = require('thunkify');
 var inlineTmpl = require('../core/inlineTmpl');
+var _ = require('../lib/underscore');
+
+var cwd = process.cwd();
+var jsdeps = require('../core/jsdeps');
 
 module.exports = function *(next) {
 	var self = this ,content;
@@ -31,8 +36,8 @@ module.exports = function *(next) {
 			content = contents.join('');
 
 		} else {
-			content = yield thunkify(fs.readFile)( this.localPath , 'utf-8');
-			content = inlineTmpl._replace(content , this.localPath);
+			
+			content = jsdeps.export(cwd , this.localPath);
 		}
 
 		this.body = content;

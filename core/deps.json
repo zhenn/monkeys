@@ -1,0 +1,402 @@
+[
+{
+name: "base/parse-param.js",
+src: "/Users/zhenn/work/h5lib/src/js/base/parse-param.js",
+require: [ ]
+},
+{
+name: "base/is-equal.js",
+src: "/Users/zhenn/work/h5lib/src/js/base/is-equal.js",
+require: [ ]
+},
+{
+name: "base/attributes.js",
+src: "/Users/zhenn/work/h5lib/src/js/base/attributes.js",
+require: [
+"./parse-param",
+"./is-equal"
+]
+},
+{
+name: "base/inherits.js",
+src: "/Users/zhenn/work/h5lib/src/js/base/inherits.js",
+require: [ ]
+},
+{
+name: "base/extend.js",
+src: "/Users/zhenn/work/h5lib/src/js/base/extend.js",
+require: [
+"./inherits"
+]
+},
+{
+name: "base/callbacks/index.js",
+src: "/Users/zhenn/work/h5lib/src/js/base/callbacks/index.js",
+require: [ ]
+},
+{
+name: "base/events.js",
+src: "/Users/zhenn/work/h5lib/src/js/base/events.js",
+require: [
+"./callbacks/index"
+]
+},
+{
+name: "base/index.js",
+src: "/Users/zhenn/work/h5lib/src/js/base/index.js",
+require: [
+"./events",
+"./extend",
+"./attributes",
+"./is-equal",
+"./parse-param"
+]
+},
+{
+name: "url/index.js",
+src: "/Users/zhenn/work/module/src/js/url/index.js",
+require: [
+"h5lib/base/index"
+]
+},
+{
+name: "_config.js",
+src: "/Users/zhenn/work/final-choice/src/js/_config.js",
+require: [
+"module/url/index"
+]
+},
+{
+name: "wxshare.js",
+src: "/Users/zhenn/work/final-choice/src/js/wxshare.js",
+require: [
+"./_config"
+]
+},
+{
+name: "loading/loading.js",
+src: "/Users/zhenn/work/module/src/js/loading/loading.js",
+require: [ ]
+},
+{
+name: "auth/sns_oauth.js",
+src: "/Users/zhenn/work/module/src/js/auth/sns_oauth.js",
+require: [ ]
+},
+{
+name: "user/user.js",
+src: "/Users/zhenn/work/module/src/js/user/user.js",
+require: [
+"../auth/sns_oauth",
+"h5lib/base/index"
+]
+},
+{
+name: "status.js",
+src: "/Users/zhenn/work/final-choice/src/js/status.js",
+require: [
+"h5lib/base/index",
+"module/url/index",
+"module/user/user",
+"module/loading/loading",
+"./_config"
+]
+},
+{
+name: "Url/index.js",
+src: "/Users/zhenn/work/module/src/js/Url/index.js",
+require: [
+"h5lib/base/index"
+]
+},
+{
+name: "report/report.js",
+src: "/Users/zhenn/work/module/src/js/report/report.js",
+require: [ ]
+},
+{
+name: "report.js",
+src: "/Users/zhenn/work/final-choice/src/js/report.js",
+require: [
+"module/report/report",
+"module/Url/index",
+"./_config",
+"./status"
+]
+},
+{
+name: "download/dl.js",
+src: "/Users/zhenn/work/module/src/js/download/dl.js",
+require: [ ]
+},
+{
+name: "layer/layer.js",
+src: "/Users/zhenn/work/module/src/js/layer/layer.js",
+require: [
+"h5lib/base/index"
+]
+},
+{
+name: "mask/mask.js",
+src: "/Users/zhenn/work/module/src/js/mask/mask.js",
+require: [
+"../layer/layer"
+]
+},
+{
+name: "poplayer/download.js",
+src: "/Users/zhenn/work/final-choice/src/js/poplayer/download.js",
+require: [
+"module/mask/mask",
+"h5lib/base/index",
+"module/download/dl",
+"../_config",
+"../report",
+"../status"
+]
+},
+{
+name: "share/url_replacer.js",
+src: "/Users/zhenn/work/module/src/js/share/url_replacer.js",
+require: [ ]
+},
+{
+name: "menubar/menubar.mini.js",
+src: "/Users/zhenn/work/module/src/js/menubar/menubar.mini.js",
+require: [
+"../share/url_replacer",
+"../loading/loading",
+"../download/dl"
+]
+},
+{
+name: "envi/envi.js",
+src: "/Users/zhenn/work/module/src/js/envi/envi.js",
+require: [ ]
+},
+{
+name: "poplayer/share-mask.js",
+src: "/Users/zhenn/work/final-choice/src/js/poplayer/share-mask.js",
+require: [
+"module/mask/mask",
+"h5lib/base/index",
+"module/download/dl",
+"../_config"
+]
+},
+{
+name: "share/randomhost.js",
+src: "/Users/zhenn/work/module/src/js/share/randomhost.js",
+require: [ ]
+},
+{
+name: "nativeapp/nativeapp.js",
+src: "/Users/zhenn/work/module/src/js/nativeapp/nativeapp.js",
+require: [
+"../envi/envi",
+"../share/randomhost",
+"../url/index"
+]
+},
+{
+name: "util/unicode.js",
+src: "/Users/zhenn/work/module/src/js/util/unicode.js",
+require: [ ]
+},
+{
+name: "toast/toast.js",
+src: "/Users/zhenn/work/module/src/js/toast/toast.js",
+require: [
+"h5lib/base/index"
+]
+},
+{
+name: "rank/rank.js",
+src: "/Users/zhenn/work/final-choice/src/js/rank/rank.js",
+require: [
+"h5lib/base/index",
+"../status",
+"module/url/index",
+"../_config",
+"../report",
+"module/toast/toast",
+"module/util/unicode"
+]
+},
+{
+name: "switchview/view.js",
+src: "/Users/zhenn/work/module/src/js/switchview/view.js",
+require: [
+"h5lib/base/index"
+]
+},
+{
+name: "creator-result/creator-result.js",
+src: "/Users/zhenn/work/final-choice/src/js/creator-result/creator-result.js",
+require: [
+"module/switchview/view",
+"h5lib/base/index",
+"../status",
+"../rank/rank",
+"module/url/index",
+"module/loading/loading",
+"module/nativeapp/nativeapp",
+"../poplayer/share-mask",
+"module/envi/envi",
+"module/menubar/menubar.mini",
+"../_config",
+"../report",
+"../poplayer/download"
+]
+},
+{
+name: "poplayer/guide-create-mask.js",
+src: "/Users/zhenn/work/final-choice/src/js/poplayer/guide-create-mask.js",
+require: [
+"module/mask/mask",
+"h5lib/base/index"
+]
+},
+{
+name: "answer/done.js",
+src: "/Users/zhenn/work/final-choice/src/js/answer/done.js",
+require: [
+"module/switchview/view",
+"h5lib/base/index",
+"../status",
+"../rank/rank",
+"module/url/index",
+"module/loading/loading",
+"../_config",
+"module/share/url_replacer",
+"module/menubar/menubar.mini",
+"module/envi/envi",
+"../poplayer/guide-create-mask",
+"../poplayer/download",
+"../report",
+"module/util/unicode",
+"module/toast/toast",
+"module/nativeapp/nativeapp"
+]
+},
+{
+name: "answer/answer.js",
+src: "/Users/zhenn/work/final-choice/src/js/answer/answer.js",
+require: [
+"module/switchview/view",
+"h5lib/base/index",
+"module/loading/loading",
+"../_config",
+"../status",
+"../report",
+"module/toast/toast",
+"module/nativeapp/nativeapp",
+"module/url/index"
+]
+},
+{
+name: "answer/invite-play.js",
+src: "/Users/zhenn/work/final-choice/src/js/answer/invite-play.js",
+require: [
+"module/switchview/view",
+"h5lib/base/index",
+"../report",
+"../status"
+]
+},
+{
+name: "question/question-over.js",
+src: "/Users/zhenn/work/final-choice/src/js/question/question-over.js",
+require: [
+"module/switchview/view",
+"h5lib/base/index",
+"../status",
+"module/nativeapp/nativeapp",
+"../poplayer/share-mask",
+"module/envi/envi",
+"../_config",
+"module/url/index",
+"../report",
+"../poplayer/download",
+"module/menubar/menubar.mini"
+]
+},
+{
+name: "question/make-questionair.js",
+src: "/Users/zhenn/work/final-choice/src/js/question/make-questionair.js",
+require: [
+"module/switchview/view",
+"h5lib/base/index",
+"module/loading/loading",
+"../status",
+"module/url/index",
+"../_config",
+"../report"
+]
+},
+{
+name: "question/select-subject.js",
+src: "/Users/zhenn/work/final-choice/src/js/question/select-subject.js",
+require: [
+"module/switchview/view",
+"h5lib/base/index",
+"../report"
+]
+},
+{
+name: "http/index.js",
+src: "/Users/zhenn/work/module/src/js/http/index.js",
+require: [
+"module/url/index"
+]
+},
+{
+name: "gamelist/gamelist.js",
+src: "/Users/zhenn/work/module/src/js/gamelist/gamelist.js",
+require: [
+"module/http/index"
+]
+},
+{
+name: "question/start.js",
+src: "/Users/zhenn/work/final-choice/src/js/question/start.js",
+require: [
+"module/switchview/view",
+"../status",
+"h5lib/base/index",
+"module/loading/loading",
+"../_config",
+"module/mask/mask",
+"module/gamelist/gamelist",
+"module/url/index",
+"../report"
+]
+},
+{
+name: "route.js",
+src: "/Users/zhenn/work/final-choice/src/js/route.js",
+require: [
+"./question/start",
+"h5lib/base/index",
+"./question/select-subject",
+"./question/make-questionair",
+"./question/question-over",
+"./answer/invite-play",
+"./answer/answer",
+"./answer/done",
+"./creator-result/creator-result",
+"module/url/index"
+]
+},
+{
+name: "index.js",
+src: "/Users/zhenn/work/final-choice/src/js/index.js",
+require: [
+"module/user/user",
+"./status",
+"./route",
+"./report",
+"./wxshare"
+]
+}
+]

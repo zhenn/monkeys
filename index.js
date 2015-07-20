@@ -7,6 +7,7 @@ var koa = require('koa');
 var app = koa();
 
 var checkPort = require('./lib/port');
+var path = require('path');
 
 var dir = require('./middleware/dir/');
 var file = require('./middleware/file');
@@ -22,7 +23,7 @@ module.exports = function(port , cssize) {
 
 	app.use(function *(next) {
 		var cwd = process.cwd();
-		var localPath = cwd + this.path;
+		var localPath = path.resolve(cwd , this.path.replace('/' , ''));
 		this.root = cwd;
 		this.localPath = localPath;
 		yield next;
