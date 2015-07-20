@@ -26,7 +26,6 @@ monkeys是一个前端开发工具集合，基于[koa](http://koajs.com/)框架�
 			 |-- images
 			 |-- index.html
 		|-- meta.json				项目元数据
-		|-- config.js				配置文件
 		|-- .gitignore
 		|-- README.md
 		
