@@ -309,17 +309,24 @@ module.exports = {
 	 * @return void
 	 */
 	seedTypeJSHandler : function (_path) {
+		
 		var self = this;
 		var fileContent = fs.readFileSync(_path , 'utf-8');
-		console.log(fileContent)
+		
 		var depsReg = /'(.+?)'/gi;
 		var depsModList = fileContent.match(depsReg).map(function (v , i) {
 			return path.resolve(path.dirname(_path) , v.replace(/'/gi , '') + '.js');
 		});
 		var buffer = '';
+		var amdReg = /,define\(.*\)/gi;
 		depsModList.forEach(function (val , i) {
-			buffer += fs.readFileSync(val , 'utf-8');
+			var temp = UglifyJS.minify(fs.readFileSync(val , 'utf-8') , {
+				fromString : true
+			}).code;
+			temp = temp.replace(amdReg , '');
+			buffer += temp;
 		});
+		
 		fs.writeFileSync(_path , buffer , 'utf-8');
 	},
 
