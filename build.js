@@ -276,6 +276,7 @@ module.exports = {
 		var ids = filetool.walker(jsDir);
 		var metaJSON = require(cwd + '/meta.json');
 		var seedJsList = metaJSON.seedJsList;
+		var cssize = self.envObj.cssize;
 		var _arr = cwd.split('/');
 		_arr.pop();
 		var projectParentDirName = _arr.join('/');
@@ -295,6 +296,7 @@ module.exports = {
 				return;
 			}
 			content = jsdeps.export(projectParentDirName , val);
+			content = cssFilter.changePxToRem(content , cssize);
 			content = UglifyJS.minify(content , {
 				fromString : true
 			}).code;
