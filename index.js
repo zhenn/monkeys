@@ -34,7 +34,7 @@ module.exports = function(port , cssize) {
 	app.use(html);
 	app.use(php);
 	app.use(css(cssize));
-	app.use(js);
+	app.use(js(cssize));
 	app.use(img);
 	app.use(mp3);
 
