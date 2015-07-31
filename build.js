@@ -276,7 +276,7 @@ module.exports = {
 	 */
 	compileJS : function () {
 		var self = this;
-		var jsDir = cwd + '/build/js';
+		var jsDir = cwd + '/src/js';
 		var ids = filetool.walker(jsDir);
 		var metaJSON = require(cwd + '/meta.json');
 		var seedJsList = metaJSON.seedJsList;
@@ -286,6 +286,7 @@ module.exports = {
 		var projectParentDirName = _arr.join('/');
 		
 		console.log('正在进行js文件静态编译:');
+
 		ids.forEach(function (val ,i) {
 			var extname = path.extname(val),
 				basename = path.basename(val),
@@ -307,7 +308,7 @@ module.exports = {
 			}
 			content = cssFilter.changePxToRem(content , cssize);
 			content = minifyJs(content);
-			fs.writeFileSync(val , content , 'utf-8');
+			fs.writeFileSync(val.replace('/src/' , '/build/') , content , 'utf-8');
 			console.log(('    ' + val.replace(/\/build\//g , '/src/') + ' ===> ' + val + ' 100%').gray);
 		});
 	},

@@ -71,8 +71,8 @@ module.exports = {
 
 			if (requireList.length == 0 && !self.notify) {
 				self.notify = 1;
-				console.log(('成功组件至: ' + process.cwd() + '/' + baseWidgetPath).green);
-				console.log(('组件列表: ' + _.uniq(self.widgetList).join('、')).gray);
+				console.log(('组件成功安装至: ' + process.cwd() + '/' + baseWidgetPath).green);
+				console.log(('列表: ' + _.uniq(self.widgetList).join('、')).gray);
 			}
 			requireList.forEach(function (v , index) {
 				self.installWidget(meta , v);

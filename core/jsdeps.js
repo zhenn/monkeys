@@ -57,6 +57,7 @@ module.exports = {
 	 * 	如：'./deps.json'
 	 */
 	getDepsTree : function (projectParentDirName , absolutePath) {
+		
 		var self = this;
 		var requireReg = /require\(['"](.+?)['"]\)/gi;
 		var depModules = [];

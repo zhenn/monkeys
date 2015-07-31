@@ -1,6 +1,7 @@
 ## changelog
 ----
 ### v1.0.6
+- 增加包管理机制，方便第三方开发者使用h5组件——类似于npm
 - 增加monkeys install widget功能
 - 默认安装到project/src/js/widget目录
 

@@ -81,9 +81,12 @@ monkeys是一个前端开发工具集合，基于[koa](http://koajs.com/)框架�
 其他细节
 
 	sudo monkeys start --cssize 640
+
+### 3，安装js组件
+
+	monkeys isntall widgetName	
 	
-	
-### 3，构建
+### 4，构建
 
 在构建阶段，分为`stage`、`product`两种模式，stage相当于在正式发布前做预演，通常情况下规则不同于正式构建，而product不需多做解释，即为正式上线部署准备代码包！
 
@@ -91,7 +94,7 @@ monkeys是一个前端开发工具集合，基于[koa](http://koajs.com/)框架�
 
 	monkeys build --stage
 
-### 4，部署
+### 5，部署
 
 TODO...
 
