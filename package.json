@@ -1,6 +1,6 @@
 {
   "name": "monkeys",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "tools for local-dev",
   "main": "index.js",
   "bin" : {
@@ -38,7 +38,10 @@
     "git-tools" : ">=0.1.4",
 	"imagemin" : ">=3.2.0",
   "extend" : ">=3.0.0",
-  "json-comments" : "0.2.1"
+  "json-comments" : "0.2.1",
+  "node-http" : "0.0.5",
+  "mkdir-p" : "0.0.6",
+  "writefile" : "0.2.8"
   },
   "license": "ISC"
 }

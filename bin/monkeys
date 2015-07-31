@@ -5,6 +5,7 @@ var program = require('commander');
 var main = require('../index');
 var build = require('../build');
 var scaffold = require('../scaffold/scaffold');
+var install = require('../install/index');
 
 program
 	.version(package.version)
@@ -39,6 +40,14 @@ program
 			product : program.product,
 			cssize : program.cssize
 		});
+	});
+
+// 子命令:打包服务
+program
+	.command('install <name>')
+	.description('intall h5-widget')
+	.action(function (name) {
+		install.start(name);
 	});
 	
 program.parse(process.argv);

@@ -1,5 +1,8 @@
 ## changelog
 ----
+### v1.0.6
+- 增加monkeys install widget功能
+- 默认安装到project/src/js/widget目录
 
 ### v1.0.5
 
