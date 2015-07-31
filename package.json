@@ -37,7 +37,8 @@
     "prompt" : "0.2.14",
     "git-tools" : ">=0.1.4",
 	"imagemin" : ">=3.2.0",
-  "extend" : ">=3.0.0"
+  "extend" : ">=3.0.0",
+  "json-comments" : "0.2.1"
   },
   "license": "ISC"
 }

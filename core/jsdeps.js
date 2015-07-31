@@ -58,7 +58,7 @@ module.exports = {
 	 */
 	getDepsTree : function (projectParentDirName , absolutePath) {
 		var self = this;
-		var requireReg = /require\('(.+?)'\)/gi;
+		var requireReg = /require\(['"](.+?)['"]\)/gi;
 		var depModules = [];
 
 		var realProjectName = absolutePath.replace(projectParentDirName , '').split('/')[1];

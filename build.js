@@ -28,8 +28,12 @@ var ImageMin = require('imagemin');
 var time = require('./lib/time');
 var cssFilter = require('./core/cssFilter');
 var jsdeps = require('./core/jsdeps');
-var UglifyJS = require("uglify-js");
+
 var uglifycss = require('uglifycss');
+var minifyJs = require('./core/minifyJs');
+
+// 让json支持注释
+require('json-comments');
 
 
 // 执行build的目录
@@ -295,11 +299,14 @@ module.exports = {
 				self.seedTypeJSHandler(val);
 				return;
 			}
-			content = jsdeps.export(projectParentDirName , val);
+
+			if (metaJSON.build && metaJSON.build.amdJsCombine) {
+				content = jsdeps.export(projectParentDirName , val);
+			} else {
+				content = fs.readFileSync(val , 'utf-8');
+			}
 			content = cssFilter.changePxToRem(content , cssize);
-			content = UglifyJS.minify(content , {
-				fromString : true
-			}).code;
+			content = minifyJs(content);
 			fs.writeFileSync(val , content , 'utf-8');
 			console.log(('    ' + val.replace(/\/build\//g , '/src/') + ' ===> ' + val + ' 100%').gray);
 		});
@@ -322,9 +329,7 @@ module.exports = {
 		var buffer = '';
 		var amdReg = /,define\(.*\)/gi;
 		depsModList.forEach(function (val , i) {
-			var temp = UglifyJS.minify(fs.readFileSync(val , 'utf-8') , {
-				fromString : true
-			}).code;
+			var temp = minifyJs(fs.readFileSync(val , 'utf-8'));
 			temp = temp.replace(amdReg , '');
 			buffer += temp;
 		});
