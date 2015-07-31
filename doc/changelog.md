@@ -1,5 +1,8 @@
 ## changelog
 ----
+### v1.0.7
+- 修改打包时的js模块路径错误问题
+
 ### v1.0.6
 - 增加包管理机制，方便第三方开发者使用h5组件——类似于npm
 - 增加monkeys install widget功能
