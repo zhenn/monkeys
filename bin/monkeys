@@ -5,19 +5,29 @@ var program = require('commander');
 var main = require('../index');
 var build = require('../build');
 var scaffold = require('../scaffold/scaffold');
-var install = require('../install/index');
+var widget = require('../widget/index');
+var cfg = require('../config/index');
+var base64 = require('../core/base64');
 
 program
 	.version(package.version)
-	.option('-p, --port [number]', 'define port for node', 80) // 声明端口
-	.option('-s, --stage' , 'stage env for build')
-	.option('-P, --product' , 'product env for build')
+	.option('-p, --port [number]', 'select port for node-service', 80) // 声明端口
+	.option('-s, --stage' , 'define stage-env for building')
+	.option('-P, --product' , 'define product-env for building')
+	.option('-l, --list' , 'get monkeys config list')
 	.option('-cm, --cssize [number]' , 'define width of UI to deal px to rem')
+
+program
+	.command('config')
+	.description('config for monkeys')
+	.action(function () {
+		cfg.setCdn(program.list);
+	});
 
 // 子命令: 初始化项目
 program
 	.command('init')
-	.description('scraffold for h5 project')
+	.description('scraffold for initialize project')
 	.action(function() {
 		scaffold.main()
 	});
@@ -42,12 +52,51 @@ program
 		});
 	});
 
-// 子命令:打包服务
+// 子命令:安装js组件
 program
 	.command('install <name>')
-	.description('intall h5-widget')
+	.description('intall widget')
 	.action(function (name) {
-		install.start(name);
+		widget.install(name);
+	});
+
+// 子命令:更新js组件
+program
+	.command('update <name>')
+	.description('update widget')
+	.action(function (name) {
+		widget.update(name);
+	});
+
+// 子命令:更新所有js组件
+program
+	.command('update <allWidget>')
+	.description('update all-widget')
+	.action(function (name) {
+		widget.updateAll(name);
+	});
+
+// 子命令:卸载js组件
+program
+	.command('uninstall <name>')
+	.description('unintall widget')
+	.action(function (name) {
+		widget.uninstall(name);
+	});
+
+// 子命令:清空js组件
+program
+	.command('clear <widget>')
+	.description('clear all widget')
+	.action(function (p) {
+		widget.clear(p);
+	});
+
+program
+	.command('base64 <filepath>')
+	.description('make base64-encoding')
+	.action(function (p) {
+		base64.transform(p);
 	});
 	
 program.parse(process.argv);

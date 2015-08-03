@@ -1,5 +1,10 @@
 ## changelog
 ----
+### v1.0.8
+- 增加卸载、更新组件操作
+- 增加对用户开放的配置, monkeys config
+- 增加base64转码api, monkeys base64 imagepath
+
 ### v1.0.7
 - 修改打包时的js模块路径错误问题
 

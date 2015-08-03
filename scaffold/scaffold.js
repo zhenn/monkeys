@@ -61,9 +61,11 @@ module.exports = {
 	// create the basic structure for project
 	create : function () {
 		var self = this;
+		var monkeysMeta = require('../meta.json');
 		self.getBaseMsg(function (err , result) {
+			result.localCdn = monkeysMeta.cdn.local;
 			self.createMeta(result);
-			filetool.copyfile(self.tempDir + '/config.js' , self.cwd + '/config.js');
+			// filetool.copyfile(self.tempDir + '/config.js' , self.cwd + '/config.js');
 			filetool.copyfile(self.tempDir + '/.gitignore' , self.cwd + '/.gitignore');
 			filetool.copydir(self.tempDir + '/src' , self.cwd + '/src');
 			self.compileHTML(result);

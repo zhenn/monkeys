@@ -21,7 +21,7 @@ module.exports = {
 	 * @param name {string} 组件名称
 	 * @return void
 	 */
-	start : function (name) {
+	install : function (name) {
 
 		var self = this;
 		var metaJSON = self.getMata();
@@ -32,6 +32,85 @@ module.exports = {
 		}
 		
 		self.installWidget(metaJSON , widgetUrl);
+	},
+
+	/**
+	 * 删除已安装组件
+	 * @param name {string} 组件名称
+	 * @return void
+	 */
+	uninstall : function (name) {
+		var cwd = process.cwd();
+		filetool.rmdir(cwd + '/' + baseWidgetPath + '/' + name , function () {
+			console.log(('已删除组件: ' + name).red);
+		});
+	},
+
+	/**
+	 * 更新组件
+	 * @param name {string} 组件名称
+	 * @return void
+	 */
+	update : function (name) {
+		var widgetDir = process.cwd() + '/' + baseWidgetPath;
+		var widgetList = fs.readdirSync(widgetDir);
+		var installed = 0;
+
+		for (var i = 0 , len = widgetList.length; i < len; i++) {
+			if (widgetList[i] == name) {
+				installed = 1;
+				break;
+			}
+		}
+		if (!installed) {
+			console.log('尚未安装组件: ' + name);
+			return;
+		}
+		this.install(name);
+	},
+
+	/**
+	 * 更新所有组件
+	 * @param name {string} 组件名称
+	 * @return void
+	 */
+	updateAll : function (p) {
+		if (p != 'allWidget') {
+			console.log('参数无效'.red);
+			return;
+		}
+		var widgetDir = process.cwd() + '/' + baseWidgetPath;
+		var widgetList = fs.readdirSync(widgetDir);
+
+		for (var i = 0 , len = widgetList.length; i < len; i++) {
+			this.install(widgetList[i]);
+		}
+		
+	},
+
+	/**
+	 * 清空安装的组件
+	 * @param name {string} 组件名称
+	 * @return void
+	 */
+	clear : function (p) {
+		if (p !== 'widget') {
+			console.log('参数无效');
+			return;
+		}
+		var cwd = process.cwd();
+		var widgetDir = cwd + '/' + baseWidgetPath;
+		var widgetList = fs.readdirSync(widgetDir);
+		var ids = widgetList.map(function (v) {
+			return widgetDir + '/' + v;
+		});
+		
+		ids.forEach(function (v , index) {
+			filetool.rmdir(v , function () {
+				console.log(('删除组件: ' + path.basename(v)).red);
+			});
+		});
+		
 	},
 
 	/**
@@ -59,6 +138,7 @@ module.exports = {
 	installWidget : function (meta , url) {
 		var self = this;
 		var nodeHttp = new NodeHttp; 
+		console.log(('wget:   ' + url).gray);
 		nodeHttp.GET(url, function (response) {
 			var content = response.buffer.toString('utf-8');
 			var localPath = process.cwd() + '/' + baseWidgetPath + '/' + url.replace(meta['widget']['base'] + meta['widget'].version + '/js/' , '');
@@ -69,11 +149,15 @@ module.exports = {
 			self.widgetList.push(name);
 			var requireList = self.getDeps(url , content);
 
-			if (requireList.length == 0 && !self.notify) {
-				self.notify = 1;
-				console.log(('组件成功安装至: ' + process.cwd() + '/' + baseWidgetPath).green);
-				console.log(('列表: ' + _.uniq(self.widgetList).join('、')).gray);
-			}
+			setTimeout(function () {
+				if (requireList.length == 0 && !self.notify) {
+					self.notify = 1;
+					console.log(('-----------------------------------------------------------').red);
+					console.log(('组件成功安装至: ' + process.cwd() + '/' + baseWidgetPath).green);
+					console.log(('列表: ' + _.uniq(self.widgetList).join('、')).gray);
+					console.log(('-----------------------------------------------------------').red);
+				}
+			} , 2000);
 			requireList.forEach(function (v , index) {
 				self.installWidget(meta , v);
 			});

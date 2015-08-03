@@ -38,9 +38,10 @@ require('json-comments');
 
 // 执行build的目录
 var cwd = process.cwd();
+var monkeysMeta = require('./meta.json');
 var cdnHost = {
-	local : 'local.cdn.pengpengla.com',
-	product : 'p1.cdn.pengpengla.com'
+	local : monkeysMeta.cdn.local,
+	product : monkeysMeta.cdn.product
 };
 var cdnReg = new RegExp('http://' + cdnHost.local , 'gi');
 
