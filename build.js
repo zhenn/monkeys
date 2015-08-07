@@ -320,7 +320,7 @@ module.exports = {
 	 * @return void
 	 */
 	seedTypeJSHandler : function (_path) {
-		
+		console.log(_path)
 		var self = this;
 		var fileContent = fs.readFileSync(_path , 'utf-8');
 		
@@ -336,7 +336,7 @@ module.exports = {
 			buffer += temp;
 		});
 		
-		fs.writeFileSync(_path , buffer , 'utf-8');
+		fs.writeFileSync(_path.replace('/src/' , '/build/') , buffer , 'utf-8');
 	},
 
 	/**
