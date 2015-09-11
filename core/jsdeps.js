@@ -124,6 +124,7 @@ module.exports = {
 	export : function (projectParentDirName , absolutePath) {
 		var self = this;
 		var deps = self.getDepsTree(projectParentDirName , absolutePath);
+		console.log(deps);
 		var result = []
 		deps.forEach(function (v , index) {
 			var filepath = v.src;

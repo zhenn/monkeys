@@ -310,7 +310,8 @@ module.exports = {
 			content = cssFilter.changePxToRem(content , cssize);
 			content = minifyJs(content);
 			fs.writeFileSync(val.replace('/src/' , '/build/') , content , 'utf-8');
-			console.log(('    ' + val.replace(/\/build\//g , '/src/') + ' ===> ' + val + ' 100%').gray);
+			
+			console.log(('    ' + val + ' ===> ' + val.replace(/\/src\//g , '/build/') + ' 100%').gray);
 		});
 	},
 
