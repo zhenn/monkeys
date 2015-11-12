@@ -69,8 +69,9 @@ module.exports = {
 			//      - stage打包在daily分支
 			//      - product打包在master分支
 			function () {
-				var repo = new Repo(cwd);
-				repo.currentBranch(this);
+				// var repo = new Repo(cwd);
+				// repo.currentBranch(this);
+				return 1;
 			},
 
 			function (err , branch) {
