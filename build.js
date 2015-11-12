@@ -78,24 +78,26 @@ module.exports = {
 				if (err) {
 					throw err;
 				}
-				
-				if (branch.indexOf('daily') > -1) {
 
-					if (envObj.stage) {
-						console.log('当前分支可进行打包操作'.green);
-						return 1;
-					} else {
-						console.log('notification:\n'.red + '	- stage打包只能在daily/x.x.x上进行,请切换分支'.gray);
-					}
-				}
-				if (branch == 'master') {
-					if (envObj.product) {
-						console.log('当前分支可进行打包操作'.green);
-						return 1;
-					} else {
-						console.log('notification:\n'.red + '	- product打包只能在master上进行,请切换分支'.gray);
-					}
-				}
+				return 1;
+				
+				// if (branch.indexOf('daily') > -1) {
+
+				// 	if (envObj.stage) {
+				// 		console.log('当前分支可进行打包操作'.green);
+				// 		return 1;
+				// 	} else {
+				// 		console.log('notification:\n'.red + '	- stage打包只能在daily/x.x.x上进行,请切换分支'.gray);
+				// 	}
+				// }
+				// if (branch == 'master') {
+				// 	if (envObj.product) {
+				// 		console.log('当前分支可进行打包操作'.green);
+				// 		return 1;
+				// 	} else {
+				// 		console.log('notification:\n'.red + '	- product打包只能在master上进行,请切换分支'.gray);
+				// 	}
+				// }
 			},
 
 			function (err) {

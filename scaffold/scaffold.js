@@ -45,12 +45,12 @@ module.exports = {
 					pattern: /^\d+?\.\d+?\.\d+?$/,
 					message: 'pattern: 1.0.0',
 					required: true
-				},
-
-				remoteRepo : {
-					description : '远程仓库地址',
-					default : 'git@gitlab.pengpeng.la:html5/' + path.basename(self.cwd) + '.git'
 				}
+
+				// remoteRepo : {
+				// 	description : '远程仓库地址',
+				// 	default : 'git@gitlab.pengpeng.la:html5/' + path.basename(self.cwd) + '.git'
+				// }
 			}
 		};
 
@@ -66,12 +66,12 @@ module.exports = {
 			result.localCdn = monkeysMeta.cdn.local;
 			self.createMeta(result);
 			// filetool.copyfile(self.tempDir + '/config.js' , self.cwd + '/config.js');
-			filetool.copyfile(self.tempDir + '/.gitignore' , self.cwd + '/.gitignore');
+			filetool.copyfile(self.tempDir + '/gitignore' , self.cwd + '/.gitignore');
 			filetool.copydir(self.tempDir + '/src' , self.cwd + '/src');
 			self.compileHTML(result);
 			console.log('log:'.green + (' project ' + result.name + ' has created').gray);
 
-			self.makeGitInit(result);
+			// self.makeGitInit(result);
 		});
 		
 	},
