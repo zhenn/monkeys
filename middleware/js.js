@@ -46,7 +46,8 @@ module.exports = function (cssize) {
 					content = jsdeps.export(cwd , this.localPath);
 				}
 
-				content = cssFilter.changePxToRem(content , cssize)
+				content = cssFilter.changePxToRem(content , cssize);
+				content = cssFilter.replaceVersion(content , '@@version' , 'src');
 				
 			}
 

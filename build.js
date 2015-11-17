@@ -311,6 +311,7 @@ module.exports = {
 				content = fs.readFileSync(val , 'utf-8');
 			}
 			content = cssFilter.changePxToRem(content , cssize);
+			content = cssFilter.replaceVersion(content , '@@version' , metaJSON.version);
 			content = minifyJs(content);
 			fs.writeFileSync(val.replace('/src/' , '/build/') , content , 'utf-8');
 			
