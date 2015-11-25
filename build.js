@@ -288,6 +288,12 @@ module.exports = {
 		var _arr = cwd.split('/');
 		_arr.pop();
 		var projectParentDirName = _arr.join('/');
+
+		var targetHost = '';
+
+		if (self.envObj.product) {
+			targetHost = 'http://' + cdnHost.product;
+		}
 		
 		console.log('正在进行js文件静态编译:');
 
@@ -312,6 +318,7 @@ module.exports = {
 			}
 			content = cssFilter.changePxToRem(content , cssize);
 			content = cssFilter.replaceVersion(content , '@@version' , metaJSON.version);
+			content = cssFilter.changeDomain(content , 'http://' + cdnHost.local , targetHost);
 			content = minifyJs(content);
 			fs.writeFileSync(val.replace('/src/' , '/build/') , content , 'utf-8');
 			
