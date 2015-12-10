@@ -166,22 +166,34 @@ module.exports = {
 
 	getRequireList : function (content) {
 		var requireReg = /require\(['"](.+?)['"]\)/gi;
-		var requireList = content.match(requireReg) && content.match(requireReg).map(function (v , index) {
+		var inlineReg = /__inline\(['"](.+?)['"]\)/gi;
+		var requireList = [] , inlineList = [];
+		requireList = content.match(requireReg) && content.match(requireReg).map(function (v , index) {
 			return v.replace(requireReg , function ($1 , $2) {
 				return $2;
 			});
 		});
-
-		return requireList || [];
+		inlineList = content.match(inlineReg) && content.match(inlineReg).map(function (v , index) {
+			return v.replace(inlineReg, function ($1 , $2) {
+				return $2;
+			});
+		});
+		if (!requireList) requireList = [];
+		if (!inlineList) inlineList = [];
+		return requireList.concat(inlineList);
 	},
 
 	getDeps : function ( url , content) {
 		var self = this;
 		var requireList = self.getRequireList(content).map(function (v) {
 			var pathname = path.dirname(url);
-			return 'http://' + path.resolve(pathname.replace('http://' , '') , v).replace(process.cwd() + '/' , '') + '.js';
+			var afterFix = '';
+			if (!v.match(/\.tmpl$/i)) {
+				afterFix = '.js';
+			}
+			return 'http://' + path.resolve(pathname.replace('http://' , '') , v).replace(process.cwd() + '/' , '') + afterFix;
 		});
-		
+
 		return requireList;
 	}
 
