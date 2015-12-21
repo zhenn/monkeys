@@ -1,6 +1,6 @@
 {
   "name": "monkeys",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "description": "tools for local-dev",
   "main": "index.js",
   "bin" : {
@@ -27,7 +27,7 @@
 	   "koa" : "0.19.1",
     "thunkify" : "2.1.2",
 	   "cp-file" : "2.1.0",
-     "copy-dir" : "0.0.7",
+     "copy-dir" : ">=0.0.7",
      "rmdir" : "1.1.0",
      "step" : "0.0.5",
      "uglify-js" : "2.4.23",
