@@ -319,7 +319,11 @@ module.exports = {
 			content = cssFilter.changePxToRem(content , cssize);
 			content = cssFilter.replaceVersion(content , '@@version' , metaJSON.version);
 			content = cssFilter.changeDomain(content , 'http://' + cdnHost.local , targetHost);
-			content = minifyJs(content);
+
+			if (metaJSON.build && metaJSON.build.jsmin) {
+				content = minifyJs(content);
+			}
+			
 			fs.writeFileSync(val.replace('/src/' , '/build/') , content , 'utf-8');
 			
 			console.log(('    ' + val + ' ===> ' + val.replace(/\/src\//g , '/build/') + ' 100%').gray);
