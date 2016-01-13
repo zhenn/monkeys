@@ -1,5 +1,9 @@
 ## changelog
 ----
+### v1.1.8
+- 增加对reactjs的支持
+- reactjs中的jsx模块可使用require做模块管理
+
 ### v1.1.7
 - 增加项目构建时的js压缩的开发
 

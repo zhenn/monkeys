@@ -302,7 +302,7 @@ module.exports = {
 				basename = path.basename(val),
 				content;
 
-			if (extname != '.js') {
+			if (extname != '.js' && extname != '.jsx') {
 				return;
 			}
 

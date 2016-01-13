@@ -17,11 +17,13 @@ var css = require('./middleware/css');
 var js = require('./middleware/js');
 var php = require('./middleware/php');
 var mp3 = require('./middleware/mp3');
+var jsx = require('./middleware/jsx');
 var colors = require('colors');
 
 module.exports = function(port , cssize) {
 
 	app.use(function *(next) {
+		
 		var cwd = process.cwd();
 		var localPath = path.resolve(cwd , this.path.replace('/' , ''));
 		this.root = cwd;
@@ -35,8 +37,10 @@ module.exports = function(port , cssize) {
 	app.use(php);
 	app.use(css(cssize));
 	app.use(js(cssize));
+	app.use(jsx);
 	app.use(img);
 	app.use(mp3);
+	
 
 	checkPort(port , '127.0.0.1' , function (status) {
 		
