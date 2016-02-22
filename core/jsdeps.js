@@ -145,9 +145,9 @@ module.exports = {
 
 			var content = fs.readFileSync(filepath , 'utf-8');
 
-			if (filepath.match(/\.jsx$/i)) {
+			// if (filepath.match(/\.jsx$/i)) {
 				content = reactTools.transform(content);
-			}
+			// }
 
 			content = inlineTmpl._replace(content , filepath);
 

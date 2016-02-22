@@ -13,6 +13,7 @@ var cwd = process.cwd();
 var jsdeps = require('../core/jsdeps');
 
 var cssFilter = require('../core/cssFilter');
+var reactTools = require('react-tools');
 
 module.exports = function (cssize) {
 
@@ -44,6 +45,7 @@ module.exports = function (cssize) {
 					content = fs.readFileSync(this.localPath , 'utf-8');
 				} else {
 					content = jsdeps.export(cwd , this.localPath);
+					content = reactTools.transform(content);
 				}
 
 				content = cssFilter.changePxToRem(content , cssize);

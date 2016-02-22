@@ -1,5 +1,8 @@
 ## changelog
 ----
+### v1.1.9
+- 修复reactjs组件类作为独立模块无法被amd模块引入、使用的问题
+
 ### v1.1.8
 - 增加对reactjs的支持
 - reactjs中的jsx模块可使用require做模块管理
