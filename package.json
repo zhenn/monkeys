@@ -1,10 +1,10 @@
 {
   "name": "monkeys",
-  "version": "1.1.9",
+  "version": "1.2.0",
   "description": "tools for local-dev",
   "main": "index.js",
-  "bin" : {
-  		"monkeys" : "./bin/monkeys"
+  "bin": {
+    "monkeys": "./bin/monkeys"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -15,34 +15,37 @@
     "monkeys",
     "toolkit"
   ],
-  "repository" : { 
-    "type" : "git", 
-    "url" : "https://github.com/zhenn/monkeys.git"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zhenn/monkeys.git"
   },
   "author": "zhenn",
-  "contributors" : [],
-  "man" : "",
-  "dependencies" : {
+  "contributors": [],
+  "man": "",
+  "dependencies": {
     "commander": ">= 2.8.0",
-	   "koa" : "0.19.1",
-    "thunkify" : "2.1.2",
-	   "cp-file" : "2.1.0",
-     "copy-dir" : ">=0.0.7",
-     "rmdir" : "1.1.0",
-     "step" : "0.0.5",
-     "uglify-js" : "2.4.23",
-     "uglifycss" : "0.0.15",
-	 "co" : "4.5.4",
-    "colors" :"1.1.0",
-    "prompt" : "0.2.14",
-    "git-tools" : ">=0.1.4",
-	"imagemin" : ">=3.2.0",
-  "extend" : ">=3.0.0",
-  "json-comments" : "0.2.1",
-  "node-http" : "0.0.5",
-  "mkdir-p" : "0.0.6",
-  "writefile" : "0.2.8",
-  "react-tools" : ">=0.13.3"
+    "koa": "0.19.1",
+    "thunkify": "2.1.2",
+    "cp-file": "2.1.0",
+    "copy-dir": ">=0.0.7",
+    "rmdir": "1.1.0",
+    "step": "0.0.5",
+    "uglify-js": "2.4.23",
+    "uglifycss": "0.0.15",
+    "co": "4.5.4",
+    "colors": "1.1.0",
+    "prompt": "0.2.14",
+    "git-tools": ">=0.1.4",
+    "imagemin": ">=3.2.0",
+    "extend": ">=3.0.0",
+    "json-comments": "0.2.1",
+    "node-http": "0.0.5",
+    "mkdir-p": "0.0.6",
+    "writefile": "0.2.8",
+    "react-tools": ">=0.13.3"
   },
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "babel-preset-react": "^6.5.0"
+  }
 }

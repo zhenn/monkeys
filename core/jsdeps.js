@@ -11,7 +11,6 @@ var path = require('path');
 var inlineTmpl = require('./inlineTmpl');
 var reactTools = require('react-tools');
 
-
 module.exports = {
 	/**
 	 * 给对象组成的数组去重
@@ -144,14 +143,8 @@ module.exports = {
 			var requires = v.require;
 
 			var content = fs.readFileSync(filepath , 'utf-8');
-
-			// if (filepath.match(/\.jsx$/i)) {
-				content = reactTools.transform(content);
-			// }
-
+			content = reactTools.transform(content);
 			content = inlineTmpl._replace(content , filepath);
-
-
 
 			result.push(self.attach(content , name , requires));
 		});
