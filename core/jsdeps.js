@@ -143,7 +143,11 @@ module.exports = {
 			var requires = v.require;
 
 			var content = fs.readFileSync(filepath , 'utf-8');
-			content = reactTools.transform(content);
+			try {
+				content = reactTools.transform(content);
+			} catch (e) {
+				console.log(e.message);
+			}
 			content = inlineTmpl._replace(content , filepath);
 
 			result.push(self.attach(content , name , requires));

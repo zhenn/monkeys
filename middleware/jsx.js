@@ -17,7 +17,11 @@ module.exports = function *(next) {
 		}
 		if (this.file.type == 'jsx') {
 			var content = yield thunkify(fs.readFile)( this.localPath , 'utf-8');
-			content = reactTools.transform(content);
+			try {
+				content = reactTools.transform(content);
+			} catch (e) {
+				console.log(e.message);
+			}
 			
 			this.set('Content-Type' , 'text/javascript');
 			this.body = content;
