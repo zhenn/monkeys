@@ -14,7 +14,8 @@ module.exports = function *(next) {
 			flags : "r", 
 			encoding : null
 		});
-		this.set('Content-Type' , 'image/' + this.file.type);
+		
+		this.set('Content-Type' , 'image/' + (this.file.type == 'svg' ? (this.file.type + '+xml') : this.file.type));
 		this.set('Accept-Ranges' , 'bytes');
 		this.set('Access-Control-Allow-Origin' , '*');
 		this.body = stream;	
