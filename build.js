@@ -189,7 +189,14 @@ module.exports = {
 		if (filetool.isDir(cwd + '/build/css')) {
 			var cssFiles = filetool.walker(cwd + '/build/css');
 			cssFiles.forEach(function (v , i) {
+				var ext = path.extname(v);
+				var invalidArr = ['.js' , '.css' , '.jsx' , '.tmpl'];
+
+				if (invalidArr.indexOf(ext) < 0) {
+					return;
+				}
 				var content = fs.readFileSync(v , 'utf-8');
+
 				fs.writeFileSync(v , '/****built in ' + time.format(new Date) + '****/\n' + content , 'utf-8');
 			});
 		}
