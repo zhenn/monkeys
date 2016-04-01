@@ -27,10 +27,10 @@ module.exports = function (cssize) {
 			
 			// 若是seed.js 
 			// 需要人工处理require
-			if (this.path.match(/seed\.js$/gi)) {
+			if (this.path.match(/seed.*\.js$/gi)) {
 				var source = yield thunkify(fs.readFile)( this.localPath , 'utf-8');
 				var moduleIds = source.match(/\'.+?\'/gi).map(function (val) {
-					return  self.localPath.replace(/seed\.js$/gi , '') + val.replace(/\'/gi ,'') + '.js';
+					return  self.localPath.replace(/seed.*\.js$/gi , '') + val.replace(/\'/gi ,'') + '.js';
 				})
 				var contents = [];
 
