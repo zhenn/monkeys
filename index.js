@@ -17,6 +17,7 @@ var css = require('./middleware/css');
 var js = require('./middleware/js');
 var php = require('./middleware/php');
 var mp3 = require('./middleware/mp3');
+var swf = require('./middleware/swf');
 var jsx = require('./middleware/jsx');
 var colors = require('colors');
 
@@ -40,6 +41,7 @@ module.exports = function(port , cssize) {
 	app.use(jsx);
 	app.use(img);
 	app.use(mp3);
+	app.use(swf);
 	
 
 	checkPort(port , '127.0.0.1' , function (status) {
