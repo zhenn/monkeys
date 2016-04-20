@@ -1,0 +1,120 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/bin/node', '/usr/local/bin/npm', 'publish' ]
+2 info using npm@3.6.0
+3 info using node@v5.6.0
+4 verbose publish [ '.' ]
+5 silly cache add args [ '.', null ]
+6 verbose cache add spec .
+7 silly cache add parsed spec Result {
+7 silly cache add   raw: '.',
+7 silly cache add   scope: null,
+7 silly cache add   name: null,
+7 silly cache add   rawSpec: '.',
+7 silly cache add   spec: '/Users/zhenn/monkeys',
+7 silly cache add   type: 'directory' }
+8 verbose addLocalDirectory /Users/zhenn/.npm/monkeys/2.0.1/package.tgz not in flight; packing
+9 verbose correctMkdir /Users/zhenn/.npm correctMkdir not in flight; initializing
+10 info lifecycle monkeys@2.0.1~prepublish: monkeys@2.0.1
+11 silly lifecycle monkeys@2.0.1~prepublish: no script for prepublish, continuing
+12 verbose tar pack [ '/Users/zhenn/.npm/monkeys/2.0.1/package.tgz',
+12 verbose tar pack   '/Users/zhenn/monkeys' ]
+13 verbose tarball /Users/zhenn/.npm/monkeys/2.0.1/package.tgz
+14 verbose folder /Users/zhenn/monkeys
+15 verbose addLocalTarball adding from inside cache /Users/zhenn/.npm/monkeys/2.0.1/package.tgz
+16 verbose correctMkdir /Users/zhenn/.npm correctMkdir not in flight; initializing
+17 silly cache afterAdd monkeys@2.0.1
+18 verbose afterAdd /Users/zhenn/.npm/monkeys/2.0.1/package/package.json not in flight; writing
+19 verbose correctMkdir /Users/zhenn/.npm correctMkdir not in flight; initializing
+20 verbose afterAdd /Users/zhenn/.npm/monkeys/2.0.1/package/package.json written
+21 silly publish { name: 'monkeys',
+21 silly publish   version: '2.0.1',
+21 silly publish   description: 'tools for local-dev',
+21 silly publish   main: 'index.js',
+21 silly publish   bin: { monkeys: './bin/monkeys' },
+21 silly publish   scripts: { test: 'echo "Error: no test specified" && exit 1' },
+21 silly publish   keywords: [ 'tools', 'monkey', 'monkeys', 'toolkit' ],
+21 silly publish   repository: { type: 'git', url: 'https://github.com/zhenn/monkeys.git' },
+21 silly publish   author: { name: 'zhenn' },
+21 silly publish   contributors: [],
+21 silly publish   man: '',
+21 silly publish   dependencies:
+21 silly publish    { commander: '>= 2.8.0',
+21 silly publish      koa: '0.19.1',
+21 silly publish      thunkify: '2.1.2',
+21 silly publish      'cp-file': '2.1.0',
+21 silly publish      'copy-dir': '>=0.0.7',
+21 silly publish      rmdir: '1.1.0',
+21 silly publish      step: '0.0.5',
+21 silly publish      'uglify-js': '2.4.23',
+21 silly publish      uglifycss: '0.0.15',
+21 silly publish      co: '4.5.4',
+21 silly publish      colors: '1.1.0',
+21 silly publish      prompt: '0.2.14',
+21 silly publish      'git-tools': '>=0.1.4',
+21 silly publish      imagemin: '>=3.2.0',
+21 silly publish      extend: '>=3.0.0',
+21 silly publish      'json-comments': '0.2.1',
+21 silly publish      'node-http': '0.0.5',
+21 silly publish      'mkdir-p': '0.0.6',
+21 silly publish      writefile: '0.2.8',
+21 silly publish      'react-tools': '>=0.13.3' },
+21 silly publish   license: 'ISC',
+21 silly publish   devDependencies: { 'babel-preset-react': '^6.5.0' },
+21 silly publish   readme: '# Monkeys\n____\n\n## 一，概述：\n\nmonkeys是一个前端开发工具集合，基于[koa](http://koajs.com/)框架开发，功能涉及以下环节\n\n- **项目初始化** —— 创建项目基本结构，并初始化git提交远程仓库\n- **本地web服务** —— 类似于apache、nginx，优势在于不需要繁琐的配置，可在任意目录启动，启动后当前目录即为web服务根目录\n- **构建** —— html编译，css、javascript压缩合并等\n- **部署** —— 提供项目部署快捷方式，如创建git tag并推送到远程仓库\n\n若要使用monkeys全部功能特性，包括[官方组件](http://developers.xingyunzhi.cn/module/)、项目依赖等，客户端需确保引入[requirejs](http://requirejs.org/)、[zepto](http://zeptojs.com/).\n\n\n## 二，规范\n\n### 1，目录结构\n\n\tproject\n\t\t|-- src\t\t\t\t\t\t开发目录\n\t\t\t |-- js\n\t\t\t |-- css\n\t\t\t |-- images\n\t\t\t |-- index.html\n\t\t|-- build\t\t\t\t\t发布目录\n\t\t\t |-- js\n\t\t\t |-- css\n\t\t\t |-- images\n\t\t\t |-- index.html\n\t\t|-- meta.json\t\t\t\t项目元数据（配置）——详见meta详解\n\t\t|-- .gitignore              git配置\t\t\n\t\t|-- README.md\t\t\t\t项目文档\n\t\t\n上述目录结构，是monkeys基于I/O实时编译及打包的基础规范。\n\n- 新项目可使用`monkeys init`命令初始化项目，会自行创建以上规范目录\n- 老的维护性项目，则需先按以上规范调整目录，方可适应`monkeys`\n\n在项目初始化时，工具只会创建开发时所需必要资源，如`src/*` `meta.json` `.gitignore` `README.md`，build目录将在构建项目时自动创建。另外，src目录下html文件可以是多个，且文件名称均可自定义。\n\n\n### 2，meta.json\n\n\t{\n\t\t"name" : "ssdz",\n\t\t"version" : "1.1.2",\n\t\t"deps" : {\n\t\t\t"h5lib" : "../h5lib:1.0.2",\n\t\t\t"module" : "../module:1.1.7"\n\t\t},\n\t\t"seedJsList" : ["seed.js" , "seed.lack.js"],\n\t\t"widget" : {\n\t\t\t"base" : "http://p1.cdn.pengpengla.com/module/",\n\t\t\t"version" : "1.1.6"\n\t\t},\n\t\t"build" : {\n\t\t\t"amdJsCombine" : true,\n\t\t\t"jsmin" : true\n\t\t}\n\t}\n\t\n**name：** 项目名称\n\n**version** \n\n项目版本号，在项目构建时将替换html文件、css文件中的`@@version`\n\n**deps**\n\n声明项目依赖，基本格式：\n\t\n\t"depProjectName" : "depProjectPath:depProjectVersion"\n\t\n比如\n\n\t"deps" : {\n\t\t"h5lib" : "../h5lib:1.0.2",\n\t\t"module" : "../module:1.1.7"\n\t}\n\n即声明当前项目依赖h5lib、module两个项目，且和当前项目在相同目录层级。\n\n**seedJsList**\n\n种子类型JS文件列表配置。\n\n种子文件？通常指用script标签形势直接载入到html页面的文件，如第三方库requirejs、zepto、underscore等！种子文件，在项目中每个页面均会被使用，且无需使用模块化（amd\\cmd）方式引用。\n\n从加载性能角度考虑，为了避免多个http请求种子文件，通常会将多个种子文件合并成单个文件，很明显人肉做物理合并乃非明智之选。当然地，使用seedJsList声明便可解决此问题。\n\nseedJsList种子文件编写务必按照约定格式，如seed.js：\n\n\trequire(\'./require\');\n\trequire(\'./zepto/zepto\');\n\trequire(\'./zepto/callbacks\');\n\trequire(\'./zepto/defered\');\n\trequire(\'./zepto/fx\');\n\trequire(\'./underscore\');\n\trequire(\'./fastclick/index\');\n\trequire(\'./m-base\');\n\n文件被指定为seed类型后，monkeys做的仅仅是按顺序依次找到请求的模块做串行输出，而不按照AMD模块规范做编译，无论是在IO阶段还是项目构建阶段。\n\n**widget**\n\n声明组件配置，包括源、版本信息，有此声明之后，在当前项目目录下即可使用`monkeys install widgetname`安装提供的[官方组件](http://developers.xingyunzhi.cn/module/)\n\n**build**\n\n项目构建的相关配置\n\n- amdJsCombile 是否执行AMD模块合并，默认false\n- jsmin 是否压缩javascript文件，默认false\n\n\n### 3，项目依赖\n\n在实际的业务场景中，有很多通用、共用的组件和模块，分布在不同的代码仓库中。\n\n通常情况下，前端通用UI组件、功能组件会被从业务仓库中独立出来管理，如何能让这些通用模块作用于其它业务项目中？项目依赖管理正是为了解决这个问题。\n\n姿势很重要，按以下方式做依赖声明：\n\n\t"deps" : {\n\t\t"h5lib" : "../h5lib:1.0.2",\n\t\t"module" : "../module:1.1.7"\n\t}\n\t\n引用被依赖项目模块:\n\n**JS格式：**\n\n\tdefine(function (require , exports , module) {\n\t\tvar PopLayer = require(\'module/poplayer/index\');\n\t\tvar http = require(\'module/http/index\');\n\t\tmodule.exports = {\n\t\t\tinit : function () {\n\t\t\t\tconsole.log(PopLayer);\n\t\t\t\tconsole.log(http);\n\t\t\t}\n\t\t};\n\t});\n\t\nrequire(\'依赖项目名称/模块路径\')，其中模块路径`src/js/`已省略，monkeys在查找模块文件时会自动从`src/js/`目录下查找。\n\n**CSS格式：**\n\n\t@import url(h5lib/css/reset.css);\n\t\nurl(\'依赖项目名称/模块路径\')，其中模块路径`src/css/`已省略，monkeys在查找模块文件时会自动从`src/css/`目录下查找。\n\n\n\n\n\n### 4，其它规范\n\n## 三，安装\n\n在安装monkeys之前，请确保本地已安装NodeJS，且版本>=0.11.x。若需要升级node版本，推荐使用node的版本工具 [n](https://www.npmjs.com/package/n)，可以很方便管理本地的node版本，避免繁琐的编译按钮过程。\n\n`n stable`升级到最稳定版本。\n\n执行如下命令安装monkeys\n\t\n\tnpm install monkeys -g\n\n\n\n## 四，使用方法\n\n### 1，项目初始化\n\n\tmonkeys init\n\t\n### 2，启动web服务\n\n\tsudo monkeys start\n\t\n默认监听80端口，sudo权限不可或缺，若80端口已被占用，monkeys将给出友情提示，如**`端口:80已被占用或链接超时`**\n\n当然，你也可以选择监听其它端口。\n\n\tmonkeys start --port 8000\n\t\n其他细节\n\n\tsudo monkeys start --cssize 640\n\n### 3，安装js组件\n\n\tmonkeys isntall widgetName\t\n\t\n### 4，构建\n\n在构建阶段，分为`stage`、`product`两种模式，stage相当于在正式发布前做预演，通常情况下规则不同于正式构建，而product不需多做解释，即为正式上线部署准备代码包！\n\n执行样例：\n\n\tmonkeys build --stage\n\n### 5，部署\n\nTODO...\n\n\n\n\n',
+21 silly publish   readmeFilename: 'README.md',
+21 silly publish   gitHead: '43755c090e7ada54fb18a9c6827c837b1f5d2f9f',
+21 silly publish   bugs: { url: 'https://github.com/zhenn/monkeys/issues' },
+21 silly publish   homepage: 'https://github.com/zhenn/monkeys',
+21 silly publish   _id: 'monkeys@2.0.1',
+21 silly publish   _shasum: '04896c79658fe37d2a19cfb05e475e6902f2db56',
+21 silly publish   _from: '.' }
+22 verbose getPublishConfig undefined
+23 silly mapToRegistry name monkeys
+24 silly mapToRegistry using default registry
+25 silly mapToRegistry registry https://registry.npmjs.org/
+26 silly mapToRegistry uri https://registry.npmjs.org/monkeys
+27 verbose publish registryBase https://registry.npmjs.org/
+28 silly publish uploading /Users/zhenn/.npm/monkeys/2.0.1/package.tgz
+29 verbose request uri https://registry.npmjs.org/monkeys
+30 verbose request sending authorization for write operation
+31 info attempt registry request try #1 at 19:30:27
+32 verbose request using bearer token for auth
+33 verbose request id 953ad901d2f8772e
+34 http request PUT https://registry.npmjs.org/monkeys
+35 http 403 https://registry.npmjs.org/monkeys
+36 verbose headers { 'content-type': 'application/json',
+36 verbose headers   'cache-control': 'max-age=300',
+36 verbose headers   'content-length': '95',
+36 verbose headers   'accept-ranges': 'bytes',
+36 verbose headers   date: 'Wed, 06 Apr 2016 11:30:29 GMT',
+36 verbose headers   via: '1.1 varnish',
+36 verbose headers   connection: 'keep-alive',
+36 verbose headers   'x-served-by': 'cache-sin6921-SIN',
+36 verbose headers   'x-cache': 'MISS',
+36 verbose headers   'x-cache-hits': '0',
+36 verbose headers   'x-timer': 'S1459942228.583473,VS0,VE1257' }
+37 verbose request invalidating /Users/zhenn/.npm/registry.npmjs.org/monkeys on PUT
+38 error publish Failed PUT 403
+39 verbose stack Error: "You cannot publish over the previously published version 2.0.1." : monkeys
+39 verbose stack     at makeError (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:264:12)
+39 verbose stack     at CachingRegistryClient.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:252:14)
+39 verbose stack     at Request._callback (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:172:14)
+39 verbose stack     at Request.self.callback (/usr/local/lib/node_modules/npm/node_modules/request/request.js:198:22)
+39 verbose stack     at emitTwo (events.js:100:13)
+39 verbose stack     at Request.emit (events.js:185:7)
+39 verbose stack     at Request.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:1035:10)
+39 verbose stack     at emitOne (events.js:95:20)
+39 verbose stack     at Request.emit (events.js:182:7)
+39 verbose stack     at IncomingMessage.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:962:12)
+40 verbose statusCode 403
+41 verbose pkgid monkeys
+42 verbose cwd /Users/zhenn/monkeys
+43 error Darwin 14.4.0
+44 error argv "/usr/local/bin/node" "/usr/local/bin/npm" "publish"
+45 error node v5.6.0
+46 error npm  v3.6.0
+47 error code E403
+48 error "You cannot publish over the previously published version 2.0.1." : monkeys
+49 error If you need help, you may report this error at:
+49 error     <https://github.com/npm/npm/issues>
+50 verbose exit [ 1, true ]
