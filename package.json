@@ -1,6 +1,6 @@
 {
   "name": "monkeys",
-  "version": "2.0.3",
+  "version": "2.0.5",
   "description": "tools for local-dev",
   "main": "index.js",
   "bin": {

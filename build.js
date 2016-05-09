@@ -160,11 +160,17 @@ module.exports = {
 				if (err) {
 					throw err;
 				}
-				var imagemin = new ImageMin();
-				console.log('正在压缩图片,稍后...'.green);
-			    imagemin.src(cwd + '/src/images/*.{gif,jpg,png,svg}')
-			    		.dest(cwd + '/build/images');
-			    imagemin.run(this);
+				try {
+					var imagemin = new ImageMin();
+					console.log('正在压缩图片,稍后...'.green);
+				    imagemin.src(cwd + '/src/images/*.{gif,jpg,png,svg}')
+				    		.dest(cwd + '/build/images');
+				    imagemin.run(this);
+				} catch(e) {
+					console.log(e.message);
+					console.log('done!!!!!'.red);
+				}
+				
 			},
 
 			function notify (err , files) {
