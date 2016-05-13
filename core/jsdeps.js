@@ -149,6 +149,7 @@ module.exports = {
 				content = babel.transform(content, {
 					presets: ['es2015']
 				}).code;
+				content = content.replace('"use strict";', '');
 			} catch (e) {
 				console.log(e.message);
 			}
