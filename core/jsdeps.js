@@ -138,6 +138,7 @@ module.exports = {
 		var self = this;
 		var deps = self.getDepsTree(projectParentDirName , absolutePath);
 		var result = []
+		
 		deps.forEach(function (v , index) {
 			var filepath = v.src;
 			var name = v.name;
@@ -149,7 +150,7 @@ module.exports = {
 				content = babel.transform(content, {
 					presets: ['es2015']
 				}).code;
-				content = content.replace('"use strict";', '');
+				content = content.replace(/("use strict";)|('use strict';)/gi, '');
 			} catch (e) {
 				console.log(e.message);
 			}
