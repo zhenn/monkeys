@@ -51,7 +51,7 @@ module.exports = function(port , cssize) {
 		}
 		
 		if (stdout.indexOf('node_module') <= -1) {
-			_process.exec('npm install --save-dev babel-preset-es2015', function(err, _stdout, _stderr) {
+			_process.exec('sudo npm install --save-dev babel-preset-es2015', function(err, _stdout, _stderr) {
 				startServer();
 			});
 			return;
