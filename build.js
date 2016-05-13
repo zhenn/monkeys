@@ -332,7 +332,7 @@ module.exports = {
 			content = cssFilter.changePxToRem(content , cssize);
 			content = cssFilter.replaceVersion(content , '@@version' , metaJSON.version);
 			content = cssFilter.changeDomain(content , 'http://' + cdnHost.local , targetHost);
-
+			
 			if (metaJSON.build && metaJSON.build.jsmin) {
 				content = minifyJs(content);
 			}

@@ -20,6 +20,7 @@ var mp3 = require('./middleware/mp3');
 var swf = require('./middleware/swf');
 var jsx = require('./middleware/jsx');
 var colors = require('colors');
+var _process = require('child_process');
 
 module.exports = function(port , cssize) {
 
@@ -42,19 +43,36 @@ module.exports = function(port , cssize) {
 	app.use(img);
 	app.use(mp3);
 	app.use(swf);
+
+	_process.exec('ls', function (error, stdout, stderr) {
+		if (error) {
+			console.log(error);
+			return;
+		}
+		
+		if (stdout.indexOf('node_module') <= -1) {
+			_process.exec('npm install --save-dev babel-preset-es2015', function(err, _stdout, _stderr) {
+				startServer();
+			});
+			return;
+		}
+
+		startServer();
+	});
 	
 
-	checkPort(port , '127.0.0.1' , function (status) {
-		
-		if (status == 'closed') {
-			app.listen(port);
-			console.log('您已成功本地server:'.green);
-			console.log(('	1. 根目录为：' + process.cwd()).green);
-			console.log(('	2. 端口：' + port).green);
-		} else {
-			console.log(('端口:' + port + '已被占用或链接超时\n').underline.red);
-		}
-	});
+	function startServer() {
+		checkPort(port , '127.0.0.1' , function (status) {
+			if (status == 'closed') {
+				app.listen(port);
+				console.log('您已成功本地server:'.green);
+				console.log(('	1. 根目录为：' + process.cwd()).green);
+				console.log(('	2. 端口：' + port).green);
+			} else {
+				console.log(('端口:' + port + '已被占用或链接超时\n').underline.red);
+			}
+		});
+	}
 
 	
 }

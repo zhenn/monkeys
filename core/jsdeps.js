@@ -10,6 +10,7 @@ var fs = require('fs');
 var path = require('path');
 var inlineTmpl = require('./inlineTmpl');
 var reactTools = require('react-tools');
+var babel = require('babel-core');
 
 module.exports = {
 	/**
@@ -145,6 +146,9 @@ module.exports = {
 			var content = fs.readFileSync(filepath , 'utf-8');
 			try {
 				content = reactTools.transform(content);
+				content = babel.transform(content, {
+					presets: ['es2015']
+				}).code;
 			} catch (e) {
 				console.log(e.message);
 			}

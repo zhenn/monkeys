@@ -1,6 +1,6 @@
 {
   "name": "monkeys",
-  "version": "2.0.5",
+  "version": "2.1.0",
   "description": "tools for local-dev",
   "main": "index.js",
   "bin": {
@@ -42,7 +42,8 @@
     "node-http": "0.0.5",
     "mkdir-p": "0.0.6",
     "writefile": "0.2.8",
-    "react-tools": ">=0.13.3"
+    "react-tools": ">=0.13.3",
+    "babel-core": ">=6.8.0"
   },
   "license": "ISC",
   "devDependencies": {
