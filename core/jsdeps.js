@@ -147,10 +147,12 @@ module.exports = {
 			var content = fs.readFileSync(filepath , 'utf-8');
 			try {
 				content = reactTools.transform(content);
-				content = babel.transform(content, {
-					presets: ['es2015']
-				}).code;
-				content = content.replace(/("use strict";)|('use strict';)/gi, '');
+				if (self.isES6(content)) {
+					content = babel.transform(content, {
+						presets: ['es2015']
+					}).code;
+					content = content.replace(/("use strict";)|('use strict';)/gi, '');
+				}
 			} catch (e) {
 				console.log(e.message);
 			}
@@ -160,6 +162,16 @@ module.exports = {
 		});
 
 		return result.join('\n');
+	},
+
+	/**
+	 * 检测js是否使用es6标准
+	 * @content {string} js文件内容
+	 * @return boolean
+	 */
+	isES6: function(content) {
+		var reg = /@filetype +ES6/i;
+		return content.match(reg);
 	},
 
 	/**
