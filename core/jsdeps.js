@@ -11,6 +11,7 @@ var path = require('path');
 var inlineTmpl = require('./inlineTmpl');
 var reactTools = require('react-tools');
 var babel = require('babel-core');
+// require('babel-polyfill');
 
 module.exports = {
 	/**
@@ -146,13 +147,14 @@ module.exports = {
 
 			var content = fs.readFileSync(filepath , 'utf-8');
 			try {
-				content = reactTools.transform(content);
+				
 				if (self.isES6(content)) {
 					content = babel.transform(content, {
-						presets: ['es2015']
+						presets: ['es2015', 'react']
 					}).code;
 					content = content.replace(/("use strict";)|('use strict';)/gi, '');
 				}
+				content = reactTools.transform(content);
 			} catch (e) {
 				console.log(e.message);
 			}
@@ -181,21 +183,27 @@ module.exports = {
 	 */
 	attach : function (content , name , requires) {
 		
-		var isAmdModule;
-		var result;
-		var amdReg = /define\s*?(\(\s*?)function/gi;
+		var amdReg = /define\s*?(\(\s*?)function/gi,
+			amdNativeReg = /require\(['"].+?['"]\)/gi,
+			pre = ['require' , 'exports' , 'module'],
+			_require = pre.concat(requires).map(function (v , index) {
+				return '"' + v + '"';
+			}),
+			isAmdModule,
+			result;
 
-		// 如果是amd模块
+		// 如果文件内容中含 define(function(){})
 		if (content.match(amdReg)) {
 			result = content.replace(amdReg , function ($1 , $2) {
-				var pre = ['require' , 'exports' , 'module'];
-				var _require = pre.concat(requires).map(function (v , index) {
-					// v = v.replace(/\.jsx$/i , 'jsx');
-					return '"' + v + '"';
-				});;
+				
 				// name = name.replace('.' , '');
 				return 'define' + $2 + '"' + name + '" , [' + _require.join(',') + '] , function';
 			});
+		} else if (content.match(amdNativeReg)) {
+			// 文件中包含require('xxx'), 亦认为amd文件
+
+			result = 'define("' + name + '", [' + _require.join(',') + '], function(require, exports, module) {\n' + content + '});';
+
 		} else {
 
 			// 否则是普通js文件

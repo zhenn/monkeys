@@ -53,7 +53,12 @@ module.exports = function(port , cssize) {
 		if (stdout.indexOf('node_module') <= -1) {
 			console.log('正在安装ES6规则集, 请稍后...'.red);
 			_process.exec('cd ' + process.cwd() + ' && sudo npm install --save-dev babel-preset-es2015', function(err, _stdout, _stderr) {
-				startServer();
+				console.log(_stdout);
+				_process.exec('sudo npm install --save-dev babel-preset-react', function(__err, __stdout, __stderr) {
+					_process.exec('sudo npm install --save-dev babel-preset-stage-3', function() {
+						startServer();
+					});
+				});
 			});
 			return;
 		}
