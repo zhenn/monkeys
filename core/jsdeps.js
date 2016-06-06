@@ -184,7 +184,7 @@ module.exports = {
 	attach : function (content , name , requires) {
 		
 		var amdReg = /define\s*?(\(\s*?)function/gi,
-			amdNativeReg = /require\(['"].+?['"]\)/gi,
+			amdNativeReg = /(require\(['"].+?['"]\))|(module.exports\s*=)/gi,
 			pre = ['require' , 'exports' , 'module'],
 			_require = pre.concat(requires).map(function (v , index) {
 				return '"' + v + '"';
@@ -201,6 +201,7 @@ module.exports = {
 			});
 		} else if (content.match(amdNativeReg)) {
 			// 文件中包含require('xxx'), 亦认为amd文件
+			// module.exports =
 
 			result = 'define("' + name + '", [' + _require.join(',') + '], function(require, exports, module) {\n' + content + '\n});';
 
