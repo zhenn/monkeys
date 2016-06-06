@@ -202,7 +202,7 @@ module.exports = {
 		} else if (content.match(amdNativeReg)) {
 			// 文件中包含require('xxx'), 亦认为amd文件
 
-			result = 'define("' + name + '", [' + _require.join(',') + '], function(require, exports, module) {\n' + content + '});';
+			result = 'define("' + name + '", [' + _require.join(',') + '], function(require, exports, module) {\n' + content + '\n});';
 
 		} else {
 
