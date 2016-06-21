@@ -71,6 +71,14 @@ module.exports = {
 			var dirname = path.dirname(_path);
 			var basename = path.basename(_path);
 			var fileSource = fs.readFileSync(_path , 'utf-8');
+			fileSource = self.delExegesis(fileSource, 'single');
+
+			if (self.isES6(fileSource)) {
+				fileSource = self.delExegesis(fileSource, 'all');
+				fileSource = babel.transform(fileSource, {
+					presets: ['es2015', 'react', 'stage-0']
+				}).code;
+			}
 			var requireList = fileSource.match(requireReg) && fileSource.match(requireReg).map(function (v , index) {
 
 				return v.replace(requireReg , function ($1 , $2) {
@@ -148,13 +156,17 @@ module.exports = {
 			var content = fs.readFileSync(filepath , 'utf-8');
 			try {
 				
-				// if (self.isES6(content)) {
+				if (self.isES6(content)) {
+					content = self.delExegesis(content, 'all');
 					content = babel.transform(content, {
 						presets: ['es2015', 'react', 'stage-0']
 					}).code;
 					content = content.replace(/("use strict";)|('use strict';)/gi, '');
-				// }
-				// content = reactTools.transform(content);
+				}
+				content = reactTools.transform(content);
+				// content = babel.transform(content, {
+				// 	presets: ['react']
+				// }).code;
 			} catch (e) {
 				console.log(e.message);
 			}
@@ -164,6 +176,33 @@ module.exports = {
 		});
 
 		return result.join('\n');
+	},
+
+	// 删除注释
+	delExegesis: function(content, mode) {
+		// /**任意字符*/ 多行
+		// // 单行
+		
+		var regmul = /\/\*\*[\s\S]*?\*\//gi,
+			regsingle = /\/\/ .*?\n/gi,
+			regall = /(\/\*\*[\s\S]*?\*\/)|(\/\/ .*?\n)/gi,
+			reg;
+
+		switch(mode) {
+			case 'all':
+				reg = regall;
+				break;
+			case 'single':
+				reg = regsingle;
+				break;
+			case 'mul':
+				reg = regmul;
+				break;
+			default:
+				break;
+		}
+		
+		return content.replace(reg, '');
 	},
 
 	/**
