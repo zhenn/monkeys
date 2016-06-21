@@ -162,8 +162,10 @@ module.exports = {
 						presets: ['es2015', 'react', 'stage-0']
 					}).code;
 					content = content.replace(/("use strict";)|('use strict';)/gi, '');
+				} else {
+					content = reactTools.transform(content);
 				}
-				content = reactTools.transform(content);
+				
 				// content = babel.transform(content, {
 				// 	presets: ['react']
 				// }).code;
