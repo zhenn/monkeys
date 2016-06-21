@@ -55,7 +55,7 @@ module.exports = function(port , cssize) {
 			_process.exec('cd ' + process.cwd() + ' && sudo npm install --save-dev babel-preset-es2015', function(err, _stdout, _stderr) {
 				console.log(_stdout);
 				_process.exec('sudo npm install --save-dev babel-preset-react', function(__err, __stdout, __stderr) {
-					_process.exec('sudo npm install --save-dev babel-preset-stage-3', function() {
+					_process.exec('sudo npm install --save-dev babel-preset-stage-0', function() {
 						startServer();
 					});
 				});

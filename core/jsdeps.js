@@ -148,13 +148,13 @@ module.exports = {
 			var content = fs.readFileSync(filepath , 'utf-8');
 			try {
 				
-				if (self.isES6(content)) {
+				// if (self.isES6(content)) {
 					content = babel.transform(content, {
-						presets: ['es2015', 'react']
+						presets: ['es2015', 'react', 'stage-0']
 					}).code;
 					content = content.replace(/("use strict";)|('use strict';)/gi, '');
-				}
-				content = reactTools.transform(content);
+				// }
+				// content = reactTools.transform(content);
 			} catch (e) {
 				console.log(e.message);
 			}
