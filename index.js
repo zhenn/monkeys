@@ -35,7 +35,7 @@ module.exports = function(port , cssize) {
 
 	app.use(dir);
 	app.use(file);
-	app.use(html);
+	app.use(html(cssize));
 	app.use(php);
 	app.use(css(cssize));
 	app.use(js(cssize));

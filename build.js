@@ -225,7 +225,7 @@ module.exports = {
 		var self = this;
 		var htmlDir = cwd + '/build';	  
 		var files = filetool.walker(htmlDir);
-		
+		var cssize = self.envObj.cssize;
 		var metaJSON = require(cwd + '/meta.json');
 
 		files.forEach(function (val , i) {
@@ -236,6 +236,7 @@ module.exports = {
 
 			content = fs.readFileSync(val , 'utf-8');
 			content = htmlFilter.replaceVersion(content , '@@version' , metaJSON.version);
+			content = cssFilter.changePxToRem(content, cssize);
 			// 若打包环境是stage
 			// 则去掉页面中所有cdn域名,"p1.cdn.pengpengla.com"
 			if (self.envObj.stage) {
