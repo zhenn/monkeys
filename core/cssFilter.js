@@ -22,7 +22,6 @@ module.exports = extend({
 		}
 		
 		content = content.replace(sizeReg , function ($1 , $2 , $3, index , source) {
-			// console.log($1,  $3, $2)
 			return ($2 * 2) / (size / 10) + 'rem' + $3; 
 		});
 
