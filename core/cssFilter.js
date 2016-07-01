@@ -16,7 +16,7 @@ module.exports = extend({
 	 * @param content {start} css内容
 	 */
 	changePxToRem : function (content , size) {
-		var sizeReg = /(\d+)px([; ])/gi;
+		var sizeReg = /(\d+)px([; ',"])/gi;
 		if (!size) {
 			return content;
 		}
